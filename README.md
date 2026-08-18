@@ -106,6 +106,20 @@ from a browser UI: chat sessions, a kanban board, and an autonomous orchestrator
 
 Run it in the background with `freki-hall &`, or stop it with `Ctrl+C`.
 
+### Changing the port or auth token
+
+Write overrides to `~/.freki-hall/config.json` — it persists across `brew upgrade`:
+
+```json
+{
+  "Urls": "http://127.0.0.1:6000",
+  "Security": { "AuthToken": "my-secret-token" }
+}
+```
+
+(Environment variables, e.g. `ASPNETCORE_URLS=...`, still work too and take precedence
+over the file — useful for a one-off run without touching disk.)
+
 ## Updating
 
 ```bash
