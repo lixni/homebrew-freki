@@ -14,6 +14,9 @@ brew install freki-hall   # optional: web dashboard for freki
 ```
 
 May also need to run brew tap lixni/homebrew-freki
+```bash
+brew tap lixni/homebrew-freki
+```
 
 `freki-hall` depends on `freki` and installs it automatically if it isn't already present.
 
