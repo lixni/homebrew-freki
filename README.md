@@ -13,9 +13,12 @@ brew install freki
 brew install freki-hall   # optional: web dashboard for freki
 ```
 
-May also need to run brew tap lixni/homebrew-freki
+Homebrew may refuse to load formulae from a third-party tap the first time, with
+`Error: Refusing to load formula ... from untrusted tap`. If you see that, trust the tap
+once and re-run install:
+
 ```bash
-brew trust Lixni/freki
+brew trust lixni/freki
 ```
 
 `freki-hall` depends on `freki` and installs it automatically if it isn't already present.
@@ -26,10 +29,70 @@ brew trust Lixni/freki
 freki
 ```
 
-Starts the interactive terminal agent. On first run it walks you through configuring a
-model provider — a local/OpenAI-compatible endpoint, an Azure AI Foundry deployment, or a
-GitHub Copilot subscription (device-flow login). Provider config is stored in
-`~/.freki/providers.json`.
+Starts the interactive terminal agent.
+
+### Provider configuration (`~/.freki/providers.json`)
+
+Freki reads its model provider(s) from `~/.freki/providers.json` — this file is required
+and read at startup; there is no other provider config source. It's a set of **named
+providers** plus a few shared defaults:
+
+```json
+{
+  "Active": "openai",
+  "Providers": {
+    "openai": {
+      "Kind": "OpenAiCompatible",
+      "BaseUrl": "https://api.openai.com/v1",
+      "ApiKeyEnv": "OPENAI_API_KEY",
+      "Model": "gpt-5"
+    }
+  }
+}
+```
+
+`Kind` is one of:
+
+| Kind | What it is | Minimal config |
+|---|---|---|
+| `OpenAiCompatible` | Any OpenAI-compatible endpoint — a local server (Ollama, LM Studio, vLLM), OpenAI itself, or an Azure AI Foundry deployment | `BaseUrl` + `ApiKey`/`ApiKeyEnv` + `Model` |
+| `Copilot` | A GitHub Copilot subscription | `{ "Kind": "Copilot" }` — logs in via device-flow on first use, no key needed |
+| `ChatGptSubscription` | A ChatGPT Plus/Pro subscription | `{ "Kind": "ChatGptSubscription" }` — same device-flow pattern |
+
+Local Ollama example:
+
+```json
+{
+  "Active": "ollama",
+  "Providers": {
+    "ollama": {
+      "Kind": "OpenAiCompatible",
+      "BaseUrl": "http://localhost:11434/v1",
+      "ApiKey": "ollama",
+      "Model": "qwen2.5-coder"
+    }
+  }
+}
+```
+
+You can define multiple named providers and switch between them at runtime with
+`/provider` (and pick a model with `/model`). `/reload` re-reads the file without
+restarting.
+
+### Skills
+
+Skills are markdown procedures Freki can pull into context on demand. They're loaded
+from up to four locations, in priority order (first match on a given name wins):
+
+1. `<project root>/.freki/skills`
+2. `<project root>/.claude/skills`
+3. `~/.freki/skills` (global — the default location for skills you want available in
+   every project)
+4. `~/.claude/skills`
+
+Each location supports two layouts: flat `*.md` files with `name:`/`description:`
+frontmatter, or Claude-style `<folder>/SKILL.md`. Run `/skills` inside Freki to see
+what's actually loaded and from where.
 
 ## Freki.Hall (web dashboard)
 
