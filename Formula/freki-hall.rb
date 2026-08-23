@@ -12,6 +12,14 @@ class FrekiHall < Formula
     bin.install_symlink libexec/"Freki.Hall" => "freki-hall"
   end
 
+  service do
+    run [opt_bin/"freki-hall"]
+    keep_alive true
+    log_path var/"log/freki-hall.log"
+    error_log_path var/"log/freki-hall.log"
+    working_dir var
+  end
+
   test do
     assert_predicate bin/"freki-hall", :exist?
   end
