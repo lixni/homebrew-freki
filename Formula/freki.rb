@@ -1,9 +1,9 @@
 class Freki < Formula
   desc "Interactive coding-CLI agent with its own agent loop, tools, and swappable model provider"
   homepage "https://github.com/lixni/Freki"
-  version "0.0.3"
-  url "https://github.com/lixni/freki-releases/releases/download/freki-v0.0.3/freki-osx-arm64.tar.gz"
-  sha256 "c4d2a58ffcee5e1362a9861f57698473b9e023638b210d26e2af3c649d712be7"
+  version "0.0.4"
+  url "https://github.com/lixni/freki-releases/releases/download/freki-v0.0.4/freki-osx-arm64.tar.gz"
+  sha256 "455101cf248c0023f85f770e0477fc8226b7899c34ee4e7ea6911c3e6f51bb7b"
 
   def install
     libexec.install Dir["*"]
