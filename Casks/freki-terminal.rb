@@ -24,4 +24,16 @@ cask "freki-terminal" do
   postflight_steps do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Freki.app"]
   end
+
+  # Launch at login is a LaunchAgent whose file is the setting. It's
+  # in zap, not uninstall, because uninstall also runs on upgrade and
+  # reinstall, which would turn the setting off.
+  zap launchctl: "dev.freki.terminal.login",
+      trash:     "~/Library/LaunchAgents/dev.freki.terminal.login.plist"
+
+  caveats <<~EOS
+    Launch at login (Settings > General) stays set up after brew uninstall.
+    Turn it off in Freki before uninstalling, or uninstall with:
+      brew uninstall --zap freki-terminal
+  EOS
 end
