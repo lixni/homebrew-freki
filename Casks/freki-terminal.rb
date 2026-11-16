@@ -1,13 +1,13 @@
 cask "freki-terminal" do
-  version "0.0.14"
+  version "0.0.15"
 
   on_arm do
-    url "https://github.com/lixni/freki-releases/releases/download/freki-terminal-v0.0.14/freki-terminal-macos-arm64.app.zip"
-    sha256 "51784c40c3ec21b0181bcbf75f6bd3edbcd105df5b57ab510af85b28c8d805ee"
+    url "https://github.com/lixni/freki-releases/releases/download/freki-terminal-v0.0.15/freki-terminal-macos-arm64.app.zip"
+    sha256 "ba8e3aeb8bd69fc6bffe24c3dc0aff7d713bacc893e4400af696f74c1e2a3088"
   end
   on_intel do
-    url "https://github.com/lixni/freki-releases/releases/download/freki-terminal-v0.0.14/freki-terminal-macos-x86_64.app.zip"
-    sha256 "f13c5590794416d2a853edd9327452f7d94cac0b808174fa45942133b2133b6e"
+    url "https://github.com/lixni/freki-releases/releases/download/freki-terminal-v0.0.15/freki-terminal-macos-x86_64.app.zip"
+    sha256 "aa99aa573a41ed35aaf3e25ad677798a4463fe325cd27124a71beabc8fd770e8"
   end
 
   name "Freki Terminal"
