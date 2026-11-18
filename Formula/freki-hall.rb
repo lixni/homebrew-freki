@@ -1,9 +1,9 @@
 class FrekiHall < Formula
   desc "Local dashboard for Freki sessions, kanban, and orchestration"
   homepage "https://github.com/lixni/Freki.Hall"
-  url "https://github.com/lixni/freki-releases/releases/download/freki-hall-v0.0.4/freki-hall-osx-arm64.tar.gz"
-  version "0.0.4"
-  sha256 "c00003091a77ce0a743ae5a552dfe59517b4bc55254faec18d8e3a7819013510"
+  url "https://github.com/lixni/freki-releases/releases/download/freki-hall-v0.0.5/freki-hall-osx-arm64.tar.gz"
+  version "0.0.5"
+  sha256 "41f172603c3575c7a204100cac67ba54ea905444d048c0e21ac65288c7202470"
 
   depends_on "lixni/freki/freki"
 
